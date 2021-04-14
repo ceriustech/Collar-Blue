@@ -7,6 +7,7 @@ const connectDB = async () => {
 		await mongoose.connect(db, {
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
+			useCreateIndex: true,
 		});
 		console.log('%cmongoDB Connected...', 'font-size: 1.5em; color: 1ebc38');
 	} catch (err) {
