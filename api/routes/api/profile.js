@@ -2,13 +2,13 @@
 
 // Handles creating users
 
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
 // @route GET api/profile
 // @desc Test route
 // @access Public
 
-router.get("/", (req, res) => res.send("PROFILE ROUTE!"));
+router.get('/', (req, res) => res.send('PROFILE ROUTE!'));
 
 module.exports = router;
