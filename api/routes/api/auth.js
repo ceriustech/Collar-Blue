@@ -1,6 +1,4 @@
-// Handles getting JWT for authentication
-
-// Handles creating auth
+// Handles getting JWT for user authentication
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
