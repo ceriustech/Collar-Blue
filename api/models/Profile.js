@@ -74,7 +74,7 @@ const ProfileSchema = new Schema({
 				type: String,
 				required: true,
 			},
-			areaoffocus: {
+			expertise: {
 				type: String,
 				required: true,
 			},
