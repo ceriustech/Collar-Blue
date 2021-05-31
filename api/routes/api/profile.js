@@ -49,6 +49,21 @@ router.post(
 		if (!errors.isEmpty()) {
 			return res.status(400).json({ errors: errors.array() });
 		}
+
+		const {
+			company,
+			website,
+			location,
+			status,
+			skills,
+			bio,
+			githubusername,
+			youtube,
+			facebook,
+			twitter,
+			instagram,
+			linkedin,
+		} = req.body;
 	}
 );
 
