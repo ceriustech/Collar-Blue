@@ -40,16 +40,18 @@ router.post(
 		auth,
 		[
 			check('status', 'Status is required').not().isEmpty(),
-			check('expertise', 'Expertise is required').not().isEmpty(),
+			check('skills', 'Skills is required').not().isEmpty(),
 		],
 	],
 	async (req, res) => {
+		// Checking for errors in the body
 		const errors = validationResult(req);
 
 		if (!errors.isEmpty()) {
 			return res.status(400).json({ errors: errors.array() });
 		}
 
+		// Pull out fields from the body
 		const {
 			company,
 			website,
@@ -57,13 +59,63 @@ router.post(
 			status,
 			skills,
 			bio,
-			githubusername,
 			youtube,
 			facebook,
 			twitter,
 			instagram,
 			linkedin,
 		} = req.body;
+
+		// Initialize and build profile object
+		const profileFields = {};
+
+		// Check to see what's coming into the database
+		profileFields.user = req.user.id;
+		if (company) profileFields.company = company;
+		if (website) profileFields.website = website;
+		if (location) profileFields.location = location;
+		if (status) profileFields.status = status;
+		if (skills) {
+			profileFields.skills = skills.split(',').map((skill) => skill.trim());
+		}
+		console.log(profileFields.skills);
+		res.send('Hello skills');
+		if (bio) profileFields.bio = bio;
+
+		// Initialize and build social object
+		profileFields.social = {};
+
+		// Check to see what's coming into the database
+		if (youtube) profileFields.social.youtube = youtube;
+		if (facebook) profileFields.social.facebook = facebook;
+		if (twitter) profileFields.social.twitter = twitter;
+		if (instagram) profileFields.social.instagram = instagram;
+		if (linkedin) profileFields.social.linkedin = linkedin;
+
+		// Searching for profile by the user id
+		try {
+			let profile = await Profile.findOne({ user: req.user.id });
+
+			// If the profile is found it'll be updated and the profile will be sent back to the database
+			if (profile) {
+				// Update
+				profile = await Profile.findOneAndUpdate(
+					{ user: req.user.id },
+					{ $set: profileFields },
+					{ new: true }
+				);
+
+				return res.json(profile); // sends back the profile
+			}
+
+			// If the profile is not found it'll be created
+			profile = new Profile(profileFields);
+			await profile.save();
+			res.json(profile); // sends back the profile
+		} catch (err) {
+			console.error(err.message);
+			res.status(500).send('Server Error');
+		}
 	}
 );
 

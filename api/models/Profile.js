@@ -9,7 +9,8 @@ const ProfileSchema = new Schema({
 	},
 	handle: {
 		type: String,
-		required: true,
+		required: false,
+		unique: true,
 		max: 40,
 	},
 	company: {
@@ -30,9 +31,6 @@ const ProfileSchema = new Schema({
 		required: true,
 	},
 	bio: {
-		type: String,
-	},
-	githubusername: {
 		type: String,
 	},
 	experience: [
