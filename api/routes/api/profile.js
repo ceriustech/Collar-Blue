@@ -79,7 +79,7 @@ router.post(
 			profileFields.skills = skills.split(',').map((skill) => skill.trim());
 		}
 		console.log(profileFields.skills);
-		res.send('Hello skills');
+		// res.send('Hello skills');
 		if (bio) profileFields.bio = bio;
 
 		// Initialize and build social object
