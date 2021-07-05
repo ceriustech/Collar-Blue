@@ -1,7 +1,5 @@
 // Handles adding, updating, and removing posts.
 
-// Handles creating users
-
 const express = require('express');
 const router = express.Router();
 

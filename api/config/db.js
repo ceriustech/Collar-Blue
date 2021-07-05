@@ -8,6 +8,7 @@ const connectDB = async () => {
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
 			useCreateIndex: true,
+			useFindAndModify: false,
 		});
 		console.log('%cmongoDB Connected...', 'font-size: 1.5em; color: 1ebc38');
 	} catch (err) {
