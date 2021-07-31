@@ -29,13 +29,13 @@ router.get('/', auth, async (req, res) => {
 
 router.post(
 	'/',
-	auth,
 	[
 		check('email', 'Please include a valid email.').isEmail(),
 		check('password', 'Password is required.').exists(),
 	],
 	async (req, res) => {
 		const errors = validationResult(req);
+		const token = req.header('x-auth-token');
 
 		if (!errors.isEmpty()) {
 			return res.status(400).json({ errors: errors.array() });
