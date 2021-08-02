@@ -53,6 +53,7 @@ router.post(
 
 		// Pull out fields from the body
 		const {
+			handle,
 			company,
 			website,
 			location,
@@ -71,6 +72,7 @@ router.post(
 
 		// Check to see what's coming into the database
 		profileFields.user = req.user.id;
+		if (handle) profileFields.handle = handle;
 		if (company) profileFields.company = company;
 		if (website) profileFields.website = website;
 		if (location) profileFields.location = location;
@@ -119,16 +121,39 @@ router.post(
 	}
 );
 
-// @route create and update api/profile
+// @route  update an api/profile
+// @desc Update a user profile
+// @access Public
+
+router.patch('/:profileId', async (req, res) => {
+	try {
+		const { profileId } = req.params;
+		const data = req.body;
+
+		const profile = await Profile.findByIdAndUpdate(profileId, data);
+
+		if (!profile)
+			return res
+				.status(404)
+				.json({ status: 'fail', message: 'No profile with that id found' });
+
+		res.json(profile);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send({
+			status: 'fail',
+			message: err.message,
+		});
+	}
+});
+
+// @route  Get api/profiles
 // @desc Get all user profiles
 // @access Public
 
 router.get('/', async (req, res) => {
 	try {
-		const profiles = await Profile.find().populate('user', [
-			'name',
-			'avatar',
-		]);
+		const profiles = await Profile.find().populate('user', ['name', 'avatar']);
 		res.json(profiles);
 	} catch (err) {
 		console.error(err.message);

@@ -75,7 +75,7 @@ router.post(
 					if (err) {
 						throw err;
 					} else {
-						res.json({ token });
+						res.send({ token });
 					}
 				}
 			);
@@ -85,9 +85,6 @@ router.post(
 			console.log(err.message);
 			res.status(500).send('Server Error!');
 		}
-
-		console.log(req.body);
-		res.send({ token });
 	}
 );
 
