@@ -121,32 +121,6 @@ router.post(
 	}
 );
 
-// @route  update an api/profile
-// @desc Update a user profile
-// @access Public
-
-router.patch('/:profileId', async (req, res) => {
-	try {
-		const { profileId } = req.params;
-		const data = req.body;
-
-		const profile = await Profile.findByIdAndUpdate(profileId, data);
-
-		if (!profile)
-			return res
-				.status(404)
-				.json({ status: 'fail', message: 'No profile with that id found' });
-
-		res.json(profile);
-	} catch (err) {
-		console.error(err.message);
-		res.status(500).send({
-			status: 'fail',
-			message: err.message,
-		});
-	}
-});
-
 // @route  Get api/profiles
 // @desc Get all user profiles
 // @access Public
@@ -182,26 +156,25 @@ router.get('/user/:user_id', async (req, res) => {
 	}
 });
 
-// router.get(
-//   '/user/:user_id',
-//   checkObjectId('user_id'),
-//   async ({ params: { user_id } }, res) => {
-//     try {
-//       const profile = await Profile.findOne({
-//         user: user_id
-//       }).populate('user', ['name', 'avatar']);
+// @route  Delete api/profile
+// @desc Delete profile, user, & posts
+// @access Public
 
-//       if (!profile) return res.status(400).json({ msg: 'Profile not found' });
+router.delete('/', async (req, res) => {
+	try {
+		// Remove posts
 
-//       return res.json(profile);
-//     } catch (err) {
-//       console.error(err.message);
-// 			if (err.kind == 'ObjectId') {
-// 				return res.status(400).json({ msg: 'Profile not found' });
-// 			}
-//       return res.status(500).json({ msg: 'Server error' });
-//     }
-//   }
-// );
+		// Remove profile
+		await Profile.findOneAndRemove({ user: req.user.id });
+
+		// Remove user
+		await User.findOneAndRemove({ _id: req.user.id });
+
+		res.json({ msg: 'User has been deleted.' });
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send('Server Error');
+	}
+});
 
 module.exports = router;
