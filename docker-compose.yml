@@ -1,0 +1,16 @@
+# https://docs.docker.com/compose/compose-file/compose-file-v3/
+
+version: '3.9'
+services:
+  api:
+    build: ./api
+    ports:
+      - 5000:5000
+    volumes:
+      - ./api:/usr/src/app
+  client:
+    build: ./client
+    ports:
+      - 3000:3000
+    volumes:
+      - ./client:/usr/src/app
