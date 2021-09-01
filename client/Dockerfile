@@ -1,8 +1,8 @@
 FROM node:lts-slim
 
-RUN mkdir -p /usr/src/app
+RUN mkdir -p /usr/src/client
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src/client
 
 EXPOSE 3000
 
