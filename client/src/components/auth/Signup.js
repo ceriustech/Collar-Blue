@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const Register = () => {
+const Signup = () => {
 	let formDataObject = {
 		name: '',
 		email: '',
@@ -11,7 +11,14 @@ const Register = () => {
 
 	const [formData, setFormData] = useState(formDataObject);
 
-	const { name, eamil, password, confirmPassword } = formData;
+	const { name, email, password, confirmPassword } = formData;
+
+	const handleFormDataChange = (e) => {
+		e.preventDefault();
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+		console.log(formData);
+	};
+
 	return (
 		<>
 			<h1 className="large text-primary">Sign Up</h1>
@@ -25,11 +32,20 @@ const Register = () => {
 						placeholder="Name"
 						name="name"
 						value={name}
+						onChange={(e) => handleFormDataChange(e)}
+						autoComplete="on"
 						required
 					/>
 				</div>
 				<div className="form-group">
-					<input type="email" placeholder="Email Address" name="email" />
+					<input
+						type="email"
+						placeholder="Email Address"
+						name="email"
+						value={email}
+						onChange={(e) => handleFormDataChange(e)}
+						autoComplete="on"
+					/>
 					<small className="form-text">
 						This site uses Gravatar so if you want a profile image, use a
 						Gravatar email
@@ -40,6 +56,8 @@ const Register = () => {
 						type="password"
 						placeholder="Password"
 						name="password"
+						value={password}
+						onChange={(e) => handleFormDataChange(e)}
 						minLength="6"
 					/>
 				</div>
@@ -47,7 +65,9 @@ const Register = () => {
 					<input
 						type="password"
 						placeholder="Confirm Password"
-						name="password2"
+						name="confirmPassword"
+						value={confirmPassword}
+						onChange={(e) => handleFormDataChange(e)}
 						minLength="6"
 					/>
 				</div>
@@ -60,4 +80,4 @@ const Register = () => {
 	);
 };
 
-export default Register;
+export default Signup;
