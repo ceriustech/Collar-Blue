@@ -19,13 +19,22 @@ const Signup = () => {
 		console.log(formData);
 	};
 
+	const handleFormSubmit = (e) => {
+		e.preventDefault();
+		if (password !== confirmPassword) {
+			console.log('passwords do not match');
+		} else {
+			console.log(formData);
+		}
+	};
+
 	return (
 		<>
 			<h1 className="large text-primary">Sign Up</h1>
 			<p className="lead">
 				<FontAwesomeIcon icon={['fas', 'user']} /> Create Your Account
 			</p>
-			<form className="form" action="create-profile.html">
+			<form className="form" onSubmit={(e) => handleFormSubmit(e)}>
 				<div className="form-group">
 					<input
 						type="text"
