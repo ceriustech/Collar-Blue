@@ -1,8 +1,33 @@
+import Landing from '../components/layout/Landing';
+
 export const navItems = [
+	{
+		linkName: 'CollarBlue',
+		component: Landing,
+		path: '/',
+		subNav: [
+			{
+				subLinkName: 'Sub Link 1',
+				path: 'https://www.youtube.com/watch?v=7UMuJMiNjSk',
+			},
+			{
+				subLinkName: 'Sub Link 2',
+				path: 'https://www.youtube.com/watch?v=7UMuJMiNjSk',
+			},
+			{
+				subLinkName: 'Sub Link 3',
+				path: 'https://www.youtube.com/watch?v=7UMuJMiNjSk',
+			},
+			{
+				subLinkName: 'Sub Link 4',
+				path: 'https://www.youtube.com/watch?v=7UMuJMiNjSk',
+			},
+		],
+	},
 	{
 		linkName: 'Home',
 		// component: HomePage,
-		path: '/',
+		path: '/home',
 		subNav: [
 			{
 				subLinkName: 'Sub Link 1',
