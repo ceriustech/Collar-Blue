@@ -1,4 +1,6 @@
 import Landing from '../components/layout/Landing';
+import Login from '../components/auth/Login';
+import Register from '../components/auth/Register';
 
 export const navItems = [
 	{
@@ -72,7 +74,7 @@ export const navItems = [
 	},
 	{
 		linkName: 'Register',
-		// component: Dashboard,
+		component: Register,
 		path: '/register',
 		subNav: [
 			{
@@ -95,7 +97,7 @@ export const navItems = [
 	},
 	{
 		linkName: 'Login',
-		// component: AccountPage,
+		component: Login,
 		path: '/login',
 		subNav: [
 			{
