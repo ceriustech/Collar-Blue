@@ -5,13 +5,13 @@ import { navItems } from '../../data/NavData';
 
 const NavigationContainer = () => {
 	const navigation = navItems
-	.filter((item) => {
-		return item.linkName !== 'CollarBlue';
-	}).map((item, index) => <NavigationListItems data={item} key={index} />);
-		
+		.filter((item) => {
+			return item.linkName !== 'CollarBlue';
+		})
+		.map((item, index) => <NavigationListItems data={item} key={index} />);
 
 	return (
-		<nav className="navbar bg-dark">
+		<nav className="navbar">
 			<h1>
 				<Link to="/" className="logo">
 					Collar

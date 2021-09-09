@@ -16,7 +16,8 @@
 /* Profiles Page */
 /* Profile Page */
 :root {
-	--primary-color: #17a2b8;
+	--primary-color: #0e7ee8;
+	--text-color: #8f8f8f;
 	--dark-color: #343a40;
 	--light-color: #f4f4f4;
 	--danger-color: #dc3545;
@@ -365,15 +366,14 @@ button {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 0.7rem 2rem;
+	padding: 0.7rem 5rem;
 	position: fixed;
 	z-index: 1;
 	width: 100%;
 	top: 0;
-	border-bottom: solid 1px var(--primary-color);
 	opacity: 0.9;
 	.logo {
-		color: #fff;
+		color: var(--text-color);
 		span {
 			color: var(--primary-color);
 			&:hover {
@@ -381,14 +381,14 @@ button {
 			}
 		}
 		&:hover {
-			color: #fff;
+			color: var(--text-color);
 		}
 	}
 	ul {
 		display: flex;
 	}
 	a {
-		color: #fff;
+		color: var(--primary-color);
 		padding: 0.45rem;
 		margin: 0 0.25rem;
 		&:hover {
@@ -403,19 +403,39 @@ button {
 }
 .landing {
 	position: relative;
-	background: url('./img/blue-collar-bg-img.jpg') no-repeat center center/cover;
+	background: url('./img/landing-page-bg-img-2.jpg') no-repeat;
+	background-position: -80px 50px;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 	height: 100vh;
-}
-.landing-inner {
-	color: #fff;
-	height: 100%;
-	width: 80%;
-	margin: auto;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
+
+	.landing-container {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+
+		.landing-inner {
+			color: var(--text-color);
+			height: 100%;
+			width: 25%;
+			margin-left: 5rem;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			justify-content: center;
+
+			.logo {
+				color: var(--text-color);
+				span {
+					color: var(--primary-color);
+				}
+			}
+		}
+	}
 }
 .profile {
 	display: grid;

@@ -3,12 +3,15 @@ import React from 'react';
 const Landing = () => {
 	return (
 		<section className="landing">
-			<div className="dark-overlay">
+			<div className="landing-container">
 				<div className="landing-inner">
-					<h1 className="x-large">CollarBlue</h1>
+					<h1 className="x-large logo">
+						Collar
+						<span>Blue</span>
+					</h1>
 					<p className="lead">
-						Create a profile &#x26; portfolio, share posts and trade work with
-						other skilled tradesmen
+						Create a profile/portfolio, share posts and trade work with other
+						skilled tradesmen
 					</p>
 					<div className="buttons">
 						<a href="register.html" className="btn btn-primary">
