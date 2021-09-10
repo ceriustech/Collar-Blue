@@ -30,7 +30,7 @@ const Signup = () => {
 
 	return (
 		<>
-			<h1 className="large text-primary">Sign Up</h1>
+			<h1 className="lead text-primary">Sign Up</h1>
 			<p className="lead">
 				<FontAwesomeIcon icon={['fas', 'user']} /> Create Your Account
 			</p>
