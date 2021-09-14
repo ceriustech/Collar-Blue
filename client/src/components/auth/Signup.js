@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import axios from 'axios';
+
 const Signup = () => {
 	let formDataObject = {
 		name: '',
@@ -19,12 +21,30 @@ const Signup = () => {
 		console.log(formData);
 	};
 
-	const handleFormSubmit = (e) => {
+	const handleFormSubmit = async (e) => {
 		e.preventDefault();
 		if (password !== confirmPassword) {
 			console.log('passwords do not match');
 		} else {
-			console.log(formData);
+			const newUser = {
+				name,
+				email,
+				password,
+			};
+
+			try {
+				const config = {
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				};
+
+				const body = JSON.stringify(newUser);
+				const res = await axios.post('/api/users', body, config);
+				console.log(res.data);
+			} catch (err) {
+				console.error(err.response.data);
+			}
 		}
 	};
 
