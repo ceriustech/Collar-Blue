@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import axios from 'axios';
 
 const Signup = () => {
 	let formDataObject = {
@@ -26,25 +25,7 @@ const Signup = () => {
 		if (password !== confirmPassword) {
 			console.log('passwords do not match');
 		} else {
-			const newUser = {
-				name,
-				email,
-				password,
-			};
-
-			try {
-				const config = {
-					headers: {
-						'Content-Type': 'application/json',
-					},
-				};
-
-				const body = JSON.stringify(newUser);
-				const res = await axios.post('/api/users', body, config);
-				console.log(res.data);
-			} catch (err) {
-				console.error(err.response.data);
-			}
+			console.log('success');
 		}
 	};
 
@@ -103,7 +84,7 @@ const Signup = () => {
 				<input type="submit" className="btn btn-primary" value="Register" />
 			</form>
 			<p className="my-1">
-				Already have an account? <a href="login.html">Sign In</a>
+				Already have an account? <Link to="/login">Log In</Link>
 			</p>
 		</>
 	);

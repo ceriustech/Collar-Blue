@@ -75,7 +75,7 @@ export const navItems = [
 	{
 		linkName: 'Sign up',
 		component: Signup,
-		path: '/register',
+		path: '/signup',
 		subNav: [
 			{
 				subLinkName: 'Sub Link 1',
