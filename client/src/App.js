@@ -6,6 +6,9 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 
+// Redux
+import { Provider } from 'react-redux';
+import store from './store';
 import './App.scss';
 import Landing from './components/layout/Landing';
 
@@ -22,11 +25,13 @@ const App = () => {
 
 	return (
 		<div className="App">
-			<NavigationContainer />
-			<Route exact path="/" component={Landing} />
-			<section className="container">
-				<Switch>{pageComponentArray}</Switch>
-			</section>
+			<Provider store={store}>
+				<NavigationContainer />
+				<Route exact path="/" component={Landing} />
+				<section className="container">
+					<Switch>{pageComponentArray}</Switch>
+				</section>
+			</Provider>
 		</div>
 	);
 };
